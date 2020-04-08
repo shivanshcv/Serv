@@ -11,3 +11,9 @@ button{
 #container{
     margin-top: 50px;
 }
+td{
+    word-wrap: break-word;
+}
+table{
+    table-layout:fixed
+}

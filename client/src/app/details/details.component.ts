@@ -15,6 +15,12 @@ export class DetailsComponent implements OnInit {
   async ngOnInit(){
     this.data=JSON.parse(localStorage.getItem("sharedData"));
     console.log(this.data);
+    if(!this.data)
+      {
+        alert("Please fill the enquiry form first")
+        this.router.navigateByUrl("/inquire")
+      }
+
     
     
     

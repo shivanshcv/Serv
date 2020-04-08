@@ -49,4 +49,3 @@ allInquiries():Observable<any[]>
     
 }
 }
-

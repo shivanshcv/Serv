@@ -5,6 +5,7 @@ var bodyParser=require('body-parser');
 var nodemailer=require('nodemailer');
 var cors=require('cors');
 var Schema=mongoose.Schema;
+require('dotenv').config()  
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,7 +24,9 @@ var userSchema=Schema({
     name:String,
     email:String,
     contactNumber:Number,
-    message:String
+    message:String,
+    status:{type:Boolean,default:false}
+
 });
 var employee=Schema({
     email:String,
@@ -48,6 +51,8 @@ app.post('/inquire',function(req,res){
             
     })
 })
+
+
 app.post("/login",function(req,res){
     Employee.findOne({email:req.body.email},function(err,foundEmployee){
         if(!foundEmployee)
@@ -94,6 +99,16 @@ app.post("/inquiries/sendmail",(req,res)=>{
     let user=req.body;
     sendMail(user,info=>{
         console.log("the mail has been sent");
+        User.update({_id:user._id},{status:true},function(err,updatedUser){
+            if(err)
+                console.log(err);
+            else
+            {
+                res.json({"n":true})
+                
+            }
+                
+        })
     });
 
     
@@ -101,20 +116,21 @@ app.post("/inquiries/sendmail",(req,res)=>{
 
 async function sendMail(user,callback){
     let transporter=nodemailer.createTransport({
-        service:"gmail",
-        port:587,
-        secure:false,
+        host:"smtp.zoho.in",
+        port:465,
+        secure:true,
         auth:{
-            user:"shivansh.cv12@gmail.com",
-            pass:"Shivanshkrcv@1205"
+            user:process.env.EMAIL,
+            pass:process.env.PASS
         }
 
     });
     let mailOptions={
-        from:"Shivansh",
+        from:'"no reply" <shivanshkumar@zohomail.in>',
         to:user.email,
-        subject:"Welcome",
-        html:`<h1>Hi${user.name}</h1><br>
+        subject:"Acknowledgment for SERV Consultancy Inquiry",
+        text:"Hello"+user.name,
+        html:`
         <h4>Thanks for reaching us, allow us 48 hours to get back to you</h4>`
     };
     let info=await transporter.sendMail(mailOptions);

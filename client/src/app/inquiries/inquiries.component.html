@@ -1,76 +1,8 @@
-<!-- 
-<div id="container">
-   <h2>Inquiry Form Details</h2>
-   
-         <table *ngIf="data" class="table">
-            <thead class="thead-dark">
-            <tr>
-               <th scope="col">Field</th>
-               <th scope="col">Value</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-               <th scope="row">Name</th>
-               <td>{{data['name']}}</td>
-            </tr>
-            <tr>
-               <th scope="row">Email</th>
-               <td>{{data['email']}}</td>
-     
-            </tr>
-            <tr>
-               <th scope="row">Contact Number</th>
-               <td>{{data['contactNumber']}}</td>
-            </tr>
-            <tr>
-               <th scope="row">Message</th>
-               <td>{{data['message']}}</td>
-            </tr>
-            </tbody>
-         </table>
-         <div class="button">
-         <button type="submit"class="btn btn-success" (click)="submit()">Done</button>
-   </div>
-   </div> -->
-<!-- <div *ngFor="let data of inquiries">
-<table >
-   <tr>
-      <th>Field</th>
-      <th>Value</th>
-   </tr>
-   <tr>
-      <td>Name</td>
-      <td>{{data['name']}}</td>
-   </tr>
-   <tr>
-      <td>Email</td>
-      <td>{{data['email']}}</td>
-   </tr>
-   <tr>
-      <td>Contact Number</td>
-      <td>{{data['contactNumber']}}</td>
-   </tr>
-   <tr>
-      <td>Message</td>
-      <td>{{data['message']}}</td>
-   </tr>
-</table>
-</div>
 
 
-
-<button type="submit" (click)="submit()">Log Out</button> -->
 <div class="container" id="container">
    <div class="row row-cols-2">
-     <!-- <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div>
-     <div class="col">Column</div> -->
+
      <div *ngFor="let data of inquiries" class="col">
       <table class="table">
          <thead class="thead-dark">
@@ -81,7 +13,7 @@
       </thead>
       <tbody>
          <tr>
-            <td>Name</td>
+            <th scope="row">Name</th>
             <td>{{data['name']}}</td>
          </tr>
          <tr>
@@ -96,10 +28,16 @@
             <th scope="row">Message</th>
             <td>{{data['message']}}</td>
          </tr>
+         <tr>
+            <th scope="row">Status</th>
+            <td *ngIf="data['status']" style="color:green">Acknowledged</td>
+            <td *ngIf="!data['status']" style="color: red;" >Pending</td>
+            
+         </tr>
       </tbody>
       </table>
       <div class="button">
-         <button type="submit"class="btn btn-success" value="{{data['email']}}"  (click)="acknowledge()" id="ack">Acknowledge</button>
+         <button type="submit"class="btn btn-success"   (click)="acknowledge(data['email'],data['_id'])" id="ack">Acknowledge</button>
    </div>
    <hr>
       </div>

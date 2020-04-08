@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../backend.service';
-import { $ } from 'protractor';
+
 
 @Component({
   selector: 'app-inquiries',
@@ -12,23 +12,21 @@ export class InquiriesComponent implements OnInit {
   public inquiries:any[];
   constructor(private router:Router,private bs:BackendService) { }
 
-  ngOnInit(): void {
-    let m=this.bs.allInquiries().subscribe((data)=>{
+  async ngOnInit() {
+    
+    let m=await this.bs.allInquiries().subscribe((data)=>{
       this.inquiries=data;
+      
+      
     });
   }
 
-  acknowledge(){
-    this.bs.sendEmail({email:"shivanshkumar1205@gmail.com"}).subscribe(
-      data=>{
-        console.log("mail gya");
-        
-      },
-      err=>{
-        console.log(err);
-        
-      }
-    )
+   acknowledge(s1:string,s2:string){
+    this.bs.sendEmail({email:s1,_id:s2}).subscribe(async(data)=>{
+      this.ngOnInit();
+      
+    });
+  
     
 
   }
