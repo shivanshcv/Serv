@@ -1,0 +1,13 @@
+.button{
+    width: 30%;
+    margin: auto;
+}
+button{
+    width: 100%;
+}
+#button{
+    margin-bottom: 50px;
+}
+#container{
+    margin-top: 50px;
+}

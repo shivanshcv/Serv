@@ -1,0 +1,14 @@
+
+#container{
+    width: 35%;
+    margin: auto;
+    margin-top: 150px;
+}
+h2,p{
+    text-align: center;
+
+}
+label{
+    font-size: larger;
+    font-weight: 500;
+}

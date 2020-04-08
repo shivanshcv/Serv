@@ -1,0 +1,83 @@
+
+<!-- <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+ 
+</form> -->
+<div id="container">
+    <h3>Inquiry Form</h3>
+    <hr>
+<form [formGroup]="inquiryForm">
+    <div class='form-group'>
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="name" required name="name" formControlName="name" aria-describedby="nameHelp"> 
+        <div id="nameHelp"*ngIf="inquiryForm.get('name').invalid && (inquiryForm.get('name').dirty || inquiryForm.get('name').touched)" >
+            <div *ngIf="inquiryForm.get('name').errors.required" class="form-text text-danger">
+                *Name is required.
+            </div>
+        </div>  
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" placeholder="email" required name="email" formControlName="email" aria-describedby="emailHelp">    
+        <div id="emailHelp" *ngIf="inquiryForm.get('email').invalid && (inquiryForm.get('email').dirty || inquiryForm.get('email').touched)" >
+            <div *ngIf="inquiryForm.get('email').errors.required" class="form-text text-danger">
+                *Email is Required
+            </div>
+            
+            <div *ngIf="inquiryForm.get('email').errors.email"class="form-text text-danger">
+                *Email is not Valid
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="number">Contact Number</label>
+        <input type="text" class="form-control" placeholder="contact number" required name="contactNumber" formControlName="contactNumber" aria-describedby="numberHelp"> 
+        <div id="numberHelp"*ngIf="inquiryForm.get('contactNumber').invalid && (inquiryForm.get('contactNumber').dirty || inquiryForm.get('contactNumber').touched)" >
+            <div *ngIf="mobile.errors.required"class="form-text text-danger">
+                *Contact Number is required.
+            </div>
+            
+            <span *ngIf="mobile.errors.invalidNumber"class="form-text text-danger">
+                *Contact Number has to be a number.
+            </span>
+            <div *ngIf="mobile.errors.minLength"class="form-text text-danger">
+                *Cannot be less than 10
+            </div>
+            <div *ngIf="mobile.errors.maxLength"class="form-text text-danger">
+                *Cannot be greater than 10
+            </div>
+        </div>   
+    </div>
+    <div class="form-group">
+        <label for="message">Message/Remark</label>
+        <input type="text" id="mssg" class="form-control" required name="message" formControlName="message" aria-describedby="mssgHelp"> 
+        <div id="mssgHelp" *ngIf="inquiryForm.get('message').invalid && (inquiryForm.get('message').dirty || inquiryForm.get('message').touched)" >
+            <div *ngIf="inquiryForm.get('message').errors.required"class="form-text text-danger">
+                *This field is required
+            </div>
+
+            <div *ngIf="inquiryForm.get('message').errors.maxLength"class="form-text text-danger">
+                *Cannot exceed 100 letters 
+            </div>
+        </div>
+    </div>
+    
+    <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
+</form>
+</div>

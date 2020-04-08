@@ -1,0 +1,11 @@
+#container{
+    width:35%;
+    margin: auto;
+}
+h3{
+    text-align:center;margin-top: 100px;
+}
+label{
+    font-size: larger;
+    font-weight: 500;
+}

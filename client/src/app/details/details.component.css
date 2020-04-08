@@ -1,0 +1,15 @@
+#container{
+    width: 50%;
+    margin: auto;
+    margin-top: 150px;
+}
+h2{
+    text-align: center;
+}
+.button{
+    width: 20%;
+    margin: auto;
+}
+button{
+    width: 50%;
+}
