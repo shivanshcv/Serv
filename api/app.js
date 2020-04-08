@@ -120,8 +120,13 @@ async function sendMail(user,callback){
         port:465,
         secure:true,
         auth:{
+<<<<<<< HEAD
             user:process.env.EMAIL,
             pass:process.env.PASS
+=======
+            user:"shivansh.cv12@gmail.com",
+            pass:"pass"
+>>>>>>> 1b26c03286b8c0b1025e2beb229e5c3d5a6fac7e
         }
 
     });

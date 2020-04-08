@@ -1,8 +1,13 @@
 
 #container{
-    width: 35%;
-    margin: auto;
-    margin-top: 150px;
+    height: 500px;
+        width: 35%;
+        margin: auto;
+        margin-top: 150px;
+        box-shadow: 0 0 15px;
+        
+        padding: 25px;
+    
 }
 h2,p{
     text-align: center;

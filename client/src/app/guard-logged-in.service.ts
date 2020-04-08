@@ -13,6 +13,7 @@ export class GuardLoggedInService {
       return true;
     else
     {
+      alert("You are already logged in")
       this.router.navigateByUrl("/inquiries");
       return false;
     }

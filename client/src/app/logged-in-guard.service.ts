@@ -14,6 +14,7 @@ export class LoggedInGuardService implements CanActivate {
       return true;
     else
     {
+      alert("Please Login First");
       this.router.navigateByUrl("/login");
       return false;
     }
